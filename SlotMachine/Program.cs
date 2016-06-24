@@ -48,10 +48,13 @@ namespace SlotMachine
 
                 // display the results
                 int[] tempResults = myMachine.GetResults();
+                Console.ForegroundColor = ConsoleColor.Red;
                 for (int i = 0; i < tempResults.Length; i++)
                 {
+
                     Console.Write(tempResults[i] + " ");
                 }
+                Console.ForegroundColor = ConsoleColor.White;
 
                 // payout
                 Console.WriteLine();
