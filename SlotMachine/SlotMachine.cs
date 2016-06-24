@@ -13,7 +13,7 @@ namespace SlotMachine
         public int IconsPerSlot { get; set; }
         public int MinimumBet { get; set; }
         public int MaximumBet { get; set; }
-        
+
 
         private int _currentBet;
         public int CurrentBet
@@ -40,7 +40,8 @@ namespace SlotMachine
         /// An array of integers that is as long as the number of slots,
         /// with each element of the array representing a different slot
         /// </summary>
-        private int[] icons;
+
+
 
 
         public SlotMachine()
@@ -51,12 +52,23 @@ namespace SlotMachine
             MaximumBet = 100;
         }
 
+
+        private int[] icons;
+
         /// <summary>
         /// Randomizes the contents of the icons
         /// </summary>
         public void PullLever()
         {
-            // TODO
+            icons = new int[NumberOfSlots];
+
+            Random random = new Random();
+
+
+            for (int i = 0; i < NumberOfSlots; i++)
+            {
+                icons[i] = random.Next(IconsPerSlot) + 1;
+            }
         }
 
         /// <summary>
@@ -65,8 +77,8 @@ namespace SlotMachine
         /// <returns>an int[] with each slot as an element of the array</returns>
         public int[] GetResults()
         {
-            // TODO
-            return null;
+            // return the icon array
+            return icons;
         }
 
         /// <summary>
@@ -76,8 +88,35 @@ namespace SlotMachine
         /// <returns>number of pennies to pay out</returns>
         public int GetPayout()
         {
-            // TODO
-            return 0;
+            // determine the payout
+            bool matches = false;
+
+            // first value to check against
+            int tempMatchNumber = icons[0];
+
+            for (int i = 1; i < NumberOfSlots; i++)
+            {
+                if (icons[i] != tempMatchNumber)
+                {
+                    break;
+                }
+
+                if (i == NumberOfSlots-1)
+                {
+                    matches = true;
+                }
+
+            }
+
+            if (matches)
+            {
+               
+                return (CurrentBet * tempMatchNumber * NumberOfSlots * 1000);
+            }
+            else
+            {
+                return (0);
+            }
         }
 
 
