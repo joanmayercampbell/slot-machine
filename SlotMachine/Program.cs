@@ -28,12 +28,18 @@ namespace SlotMachine
             while (true)
             {
                 // place a bet
-                Console.WriteLine("Type in how many pennies to bet");
+                Console.WriteLine("Type in how many pennies to bet or enter 0 to exit: ");
 
                 // You could get this using:
                 // int userBet = Convert.ToInt32(Console.ReadLine());
                 // myMachine.CurrentBet = userBet;
                 myMachine.CurrentBet = Convert.ToInt32(Console.ReadLine());
+
+                // if zero pennies then leave the program
+                if (myMachine.CurrentBet == 0)
+                {
+                    break;
+                }
 
                 // pull the lever
                 Console.WriteLine("Press enter to pull the lever");
@@ -48,7 +54,17 @@ namespace SlotMachine
                 }
 
                 // payout
-                Console.WriteLine("You won {0} pennies!", myMachine.GetPayout());
+                Console.WriteLine();
+                if (myMachine.GetPayout() == 0)
+                {
+                    Console.WriteLine("Sorry you did not win, try again!", myMachine.GetPayout());
+                }
+                else
+                {
+                    decimal penniesInDollars = myMachine.GetPayout() / 100;
+                    Console.WriteLine("You won $ {0} ",penniesInDollars);
+                }
+                
             }
 
         }

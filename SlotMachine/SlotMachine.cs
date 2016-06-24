@@ -48,7 +48,7 @@ namespace SlotMachine
         {
             NumberOfSlots = 3;
             IconsPerSlot = 5;
-            MinimumBet = 1;
+            MinimumBet = 0;
             MaximumBet = 100;
         }
 
@@ -94,6 +94,9 @@ namespace SlotMachine
             // first value to check against
             int tempMatchNumber = icons[0];
 
+
+            // check the 2 - end of array against the first element of array
+            // it will only turn true if all numbers match
             for (int i = 1; i < NumberOfSlots; i++)
             {
                 if (icons[i] != tempMatchNumber)
