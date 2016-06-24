@@ -8,7 +8,22 @@ namespace SlotMachine
 {
     class SlotMachine
     {
-        public int NumberOfSlots { get; set; }
+        private int numberOfSlots;
+        private int[] icons;
+        private Random random;
+
+        public int NumberOfSlots
+        {
+            get
+            {
+                return numberOfSlots;
+            }
+            set
+            {
+                numberOfSlots = value;
+                icons = new int[numberOfSlots];
+            }
+        }
 
         public int IconsPerSlot { get; set; }
         public int MinimumBet { get; set; }
@@ -36,6 +51,8 @@ namespace SlotMachine
             }
         }
 
+       
+
         /// <summary>
         /// An array of integers that is as long as the number of slots,
         /// with each element of the array representing a different slot
@@ -50,22 +67,20 @@ namespace SlotMachine
             IconsPerSlot = 5;
             MinimumBet = 0;
             MaximumBet = 100;
+
+            random = new Random();
         }
 
 
-        private int[] icons;
+       
 
         /// <summary>
         /// Randomizes the contents of the icons
         /// </summary>
         public void PullLever()
         {
-            icons = new int[NumberOfSlots];
-
-            Random random = new Random();
-
-
-            for (int i = 0; i < NumberOfSlots; i++)
+            
+           for (int i = 0; i < NumberOfSlots; i++)
             {
                 icons[i] = random.Next(IconsPerSlot) + 1;
             }
